@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link href="~/Html/register.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+        <main class="main">
+            <h2> Join Twitter Today.</h2>
+            <form class="twitter-form">
+
+                <div class="form-row">
+
+                    <input type="text" id="Username" name="Username" placeholder="User name">
+                    <input type="text" id="Name" name="Name" placeholder="Name">
+                    <input type="text" id="Surname" name="Surname" placeholder="Surname">
+                    <input type="text" id="Email" name="Email" placeholder="Email">
+                    <input type="password" id="Password" name="Email" placeholder="Password">
+
+                    <button type="button" onclick="postUser()">Sign up</button>
+                    <button style="margin-top:10px" type="button" onclick="Login()">Log İn</button>
+                    <br />
+                    <br />
+                    <p>
+                        By signing up you agree to the <a href="#">Terms of Services</a> and <a href="#">
+                            Privacy
+                            Policy.
+                        </a>
+                        including <a href="#">Cookie Use.</a> Others will be able to find you by email or phone number
+                        when
+                        provided.
+                    </p>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script>
+        function postUser() {
+            debugger;
+            let Username = $("#Username").val();
+            let Name = $("#Name").val();
+            let Surname = $("#Surname").val();
+            let Email = $("#Email").val();
+            let Password = $("#Password").val();
+
+            let user = {
+                Username: Username,
+                Name: Name,
+                Surname: Surname,
+                Email: Email,
+                Password: Password,
+                Isactive: true,
+                Isdeleted: false
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Login/RegisterPost",
+                data: user,
+                //dataType :"Json",
+                success: function (response) {
+                    if (response == 1)
+                    {
+
+                        successMessages("Kayıt Başarılı");
+                     
+                    }
+                    else {
+                       
+                        alertMessages("Kullanıcı adı ve şifre daha önce alınmış");
+                    }
+
+                },
+                error: function () {
+                    debugger;
+                    console.log("Hata Oluştu");
+                }
+            });
+        }
+        function Login() {
+            location.href = "/Login/Index"
+        };
+        function alertMessages(message) {
+            const cardbody = document.querySelector(".container");
+
+            const div = document.createElement("div");
+            div.className = `alert alert-danger`;
+            div.textContent = message;
+
+            cardbody.appendChild(div);
+
+            setTimeout(function () {
+                div.remove();
+            }, 2500);
+        }
+
+        function successMessages(message) {
+            const cardbody = document.querySelector(".container");
+
+            const div = document.createElement("div");
+            div.className = `alert alert-success`;
+            div.textContent = message;
+
+            cardbody.appendChild(div);
+
+            setTimeout(function () {
+                div.remove();
+           }, 2500);
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+

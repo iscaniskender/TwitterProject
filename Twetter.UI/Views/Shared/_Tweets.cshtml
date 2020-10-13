@@ -1,0 +1,78 @@
+﻿@model List<Common.Dto.DtoMainTweetsUsers>;
+@{ var loguser = Context.Session.GetObjectFromJson<Cammon.Dto.DtoUser>("loggerUser");
+    var gelenıd = Convert.ToInt32(loguser.Id);}
+<script src="~/TwitterClone-master/js/Tweet.js"></script>
+@{
+    @foreach (var item in Model)
+    {
+        var colorrt = "";
+        var colorlike = "";
+
+        if (item.Retweetactive == true)
+        {
+            colorrt = "#17bf63";
+        }
+        else
+        {
+            colorrt = "grey";
+        }
+        if (item.likeactive == true)
+        {
+            colorlike ="red";
+        }
+        else
+        {
+            colorlike = "grey";
+        }
+
+        <div class="main-content">
+            <div class="main-content-icon-holder">
+                <div class="main-content-icon">
+                    <img src="img/vesika.jpeg" alt="" width="100%" height="100%" />
+                </div>
+            </div>
+            <div class="main-content-text">
+                <div class="main-content-text-header">
+                    <span>
+                        <input type="hidden" value='@item.UserId' id="userid">
+                        <input type="hidden" value='@item.Tweetid' id="tweetid">
+                        <span class="main-content-name">@item.Name @item.Surname</span> &nbsp;<span class="main-content-nick">
+                            <span>@@</span><span>@item.Username &middot;</span>
+                            <span style="position: relative; top: 0px"> @item.Createddate</span>
+                        </span>
+                    </span>
+                    <svg viewBox="0 0 24 24" class="main-content-name-icon">
+                        <g>
+                            <path d="M20.207 8.147c-.39-.39-1.023-.39-1.414 0L12 14.94 5.207 8.147c-.39-.39-1.023-.39-1.414 0-.39.39-.39 1.023 0 1.414l7.5 7.5c.195.196.45.294.707.294s.512-.098.707-.293l7.5-7.5c.39-.39.39-1.022 0-1.413z"></path>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="main-content-text-inside">
+                    <span>
+                        @item.Text
+                    </span>
+                </div>
+
+
+
+
+
+
+                <input type="hidden" value='@item.Retweetactive' id="rtactive">
+                <input type="hidden" value='@item.likeactive' id="likeactive" />
+                <div class="content-icons">
+                    <button type="button" style="outline:none;background-color:white; border:none;color:grey" id="reply" class="far fa-comment blue"> @item.ReplyCount</button>
+                   
+                    <button type="button" style='color:@colorrt;background-color:white; outline:none;border:none' id="rt-@item.Tweetid" class="fas fa-retweet green" onclick="retweet('@gelenıd','@item.Tweetid','@item.Retweetactive')"> @item.RetweetCount</button>
+                    
+                    
+                    <button type="button" name="@item.Tweetid" value="@item.likeactive" style='color:@colorlike; outline:none;border:none;background-color:white;' id='like-@item.Tweetid' class="far fa-heart red" onclick="Like('@gelenıd','@item.Tweetid')"> @item.LikeCount </button>
+                    <i class="fas fa-chevron-up blue"></i>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+<script src="~/TwitterClone-master/js/Tweet.js"></script>

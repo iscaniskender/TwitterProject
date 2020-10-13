@@ -1,0 +1,23 @@
+﻿
+@{ var loguser = Context.Session.GetObjectFromJson<Cammon.Dto.DtoUser>("loggerUser");
+
+    var username = Convert.ToString(loguser.Username);
+    var name = Convert.ToString(loguser.Name);
+    var surname = Convert.ToString(loguser.Surname);
+    var gelenıd = Convert.ToInt32(loguser.Id);}
+
+<link href="~/TwitterClone-master/css/all.css" rel="stylesheet" />
+<link href="~/TwitterClone-master/css/style.css" rel="stylesheet" />
+<link href="~/Html/profil.css" rel="stylesheet" />
+
+<form method="post" asp-controller="home" asp-action="Search">
+    <div class="search-box">
+        <input type="hidden" name="id" value='@gelenıd' />
+        <input type="text" name="Username" id="Username" placeholder="Search Twitter">
+        <button style="        background-color: #E6ECF0;
+        border: none;
+        outline: none;" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>

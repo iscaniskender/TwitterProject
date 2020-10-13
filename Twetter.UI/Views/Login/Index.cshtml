@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link href="~/Html/Login.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="main-container">
+        <div class="left">
+            <div class="communication-box">
+                <div class="message"><span class="icon search"></span><p>Follow your interests.</p></div>
+                <div class="message"><span class="icon group"></span><p>Hear what people are talking about</p></div>
+                <div class="message"><span class="icon chat"></span><p>Join the conversation.</p></div>
+
+                <link href="~/Html/main.css" rel="stylesheet" />
+            </div>
+        </div>
+        <div class="right">
+            <div class="login-form">
+                <div class="username">
+                    <input id="username" type="text" placeholder="Phone, email, or username">
+                </div>
+                <div class="password">
+                    <input id="password" type="password" placeholder="Password">
+                    <span class="forgot-pass"><a href="#">Forgot password?</a></span>
+                </div>
+                <a onclick="postUser()" id="login-button">Log in</a>
+            </div>
+            <div class="join-box">
+                <span class="bird"></span>
+                <h1>See what's happening in the world right now</h1>
+                <h2>Join Twitter today.</h2>
+                <div class="signup-login">
+                    <a href="~/Login/Register" id="sign-up">Sign Up</a>
+                    <button id="login">Log in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <a href="#">About</a>
+            <a href="#">Help Center</a>
+            <a href="#">Blog</a>
+            <a href="#">Status</a>
+            <a href="#">Jobs</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookies</a>
+            <a href="#">Ads info</a>
+            <a href="#">Brand</a>
+            <a href="#">Apps</a>
+            <a href="#">Advertise</a>
+            <a href="#">Marketing</a>
+            <a href="#">Businesses</a>
+            <a href="#">Developers</a>
+            <a href="#">Directory</a>
+            <a href="#">Settings</a>
+            <p>© 2018 Twitter</p>
+        </div>
+    </footer>
+    <script>
+        function postUser() {
+            debugger;
+            let Username = $("#username").val();
+            let Password = $("#password").val();
+
+
+            let user = {
+                Username: Username,
+                Password: Password
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Login/Loginpost",
+                data: user,
+                //dataType :"Json",
+                success: function (response) {
+                    if (response == 1) {
+
+                        location.href = "/Home/Index"
+                    }
+                    else {
+                        alertMessages("Kullanıcı adı veya şifre hatalı");
+                    }
+
+                },
+
+            });
+        }
+        function alertMessages(message) {
+            const cardbody = document.querySelector(".bird");
+
+            const div = document.createElement("div");
+            div.className = `alert alert-danger`;
+            div.textContent = message;
+
+            cardbody.appendChild(div);
+
+            setTimeout(function () {
+                div.remove();
+            }, 2500);
+        }
+    </script>
+
+    </body>
+</html>

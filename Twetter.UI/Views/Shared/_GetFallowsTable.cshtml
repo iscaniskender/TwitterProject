@@ -1,0 +1,15 @@
+﻿@model Common.Dto.DtoUserProfileTweet;
+<script src="~/TwitterClone-master/js/Search.js"></script>
+
+<div class="main-profile-follow">
+    <span style="font-size: 15px; font-weight: 700; color: #14171a">
+        <span id="takip"> @Model.takipedilen.Where(x => x.Isdeleted == false).Count()</span>
+        <span style="font-size: 15px; font-weight: 400; color: #657786">Takip Edilen</span>
+    </span>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="font-size: 15px; font-weight: 700; color: #14171a">
+        <span id="takipci"> @Model.takipci.Where(x => x.Isdeleted == false).Count() </span>
+        <span style="font-size: 15px; font-weight: 400; color: #657786">Takipçi</span>
+    </span>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="~/TwitterClone-master/js/Search.js"></script>
