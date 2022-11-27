@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Repository.Abstarct
 {
-    public interface ILike:IRepository<Like>
+    public interface ILike:IBaseRepository<Like>
     {
         List<Like> GetLike(int id);
         void updatestate(Like like);

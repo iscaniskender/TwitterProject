@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Repository.Abstarct
 {
-    public interface IRepository<T> where T :class
+    public interface IBaseRepository<T> where T :class
     {
         T GetById(int id);
         T GetOne(Expression<Func<T, bool>> filter);

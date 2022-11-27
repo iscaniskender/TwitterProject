@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Repository.Abstarct
 {
-    public interface IConnection:IRepository<Connection>
+    public interface IConnection:IBaseRepository<Connection>
     {
         void updatestate(Connection conn);
         List<Connection> GetFallowing(int id);

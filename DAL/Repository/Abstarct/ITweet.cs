@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Repository.Abstarct
 {
-    public interface ITweet:IRepository<Tweet>
+    public interface ITweet:IBaseRepository<Tweet>
     {
         List<Tweet> GetListTweetbyUsers(List<User> entity);
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Repository.Abstarct
 {
-    public interface IReply:IRepository<Reply>
+    public interface IReply:IBaseRepository<Reply>
     {
 
     }

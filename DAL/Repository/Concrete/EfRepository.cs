@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DAL.Repository.Concrete
 {
-    public class EfRepository<T> : IRepository<T> where T : class
+    public class EfRepository<T> : IBaseRepository<T> where T : class
     {
         private DbContext _dbContext;
         private DbSet<T> _dbset;

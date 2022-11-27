@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Repository.Abstarct
 {
-    public interface IRetweet:IRepository<Retweet>
+    public interface IRetweet:IBaseRepository<Retweet>
     {
         List<Retweet> GetLike(int id);
         void updatestate(Retweet like);

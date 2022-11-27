@@ -12,7 +12,7 @@ namespace DAL.Context
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-P4JO1BR\SQLEXPRESS;Database=TweetterProject;integrated security=true");
+            optionsBuilder.UseSqlServer(@"Server=HUMA;Database=TwitterProject;integrated security=true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
